@@ -1,3 +1,3 @@
-class Subtask extends Task{
-     Integer epicId;
-}
+//class Subtask extends Task{
+//     Integer epicId;
+//}

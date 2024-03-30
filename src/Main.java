@@ -12,21 +12,23 @@ public class Main {
             int command = scanner.nextInt();
             if (command == 1) {
                 System.out.println("Введите название задачи");
-                String name = scanner.next();
-
+                Scanner input = new Scanner(System.in);
+                String name = input.nextLine();
                 System.out.println("Выберите тип задачи");
                 System.out.println("1 - ПРОСТАЯ ЗАДАЧА");
                 System.out.println("2 - ЭПИК ЗАДАЧА");
                 int button = scanner.nextInt();
                 if (button == 1) {
                     Task name1 = new Task(name);
-                    Task firstTask = manager.createNewTask(name1);
+                    Task simpleTask = manager.createNewTask(name1);
                 } else if (button == 2) {
                     Epic name2 = new Epic(name);
-                    Epic secondTask = manager.createNewEpic(name2);
+                    Epic epicTask = manager.createNewEpic(name2);
                 }
             } else if (command == 2) {
                 System.out.println(manager.allTask);
+                System.out.println(manager.allEpics);
+
             } else if (command == 0) {
                 break;
             } else {
