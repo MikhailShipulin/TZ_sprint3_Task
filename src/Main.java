@@ -14,20 +14,22 @@ public class Main {
                 System.out.println("Введите название задачи");
                 Scanner input = new Scanner(System.in);
                 String name = input.nextLine();
+                System.out.println("Напишите краткое описание.");
+                String description = input.nextLine();
                 System.out.println("Выберите тип задачи");
                 System.out.println("1 - ПРОСТАЯ ЗАДАЧА");
                 System.out.println("2 - ЭПИК ЗАДАЧА");
                 int button = scanner.nextInt();
                 if (button == 1) {
-                    Task name1 = new Task(name);
-                    Task simpleTask = manager.createNewTask(name1);
+                    Task task = new Task(name, description);
+                    Task simpleTask = manager.createNewTask(task);
                 } else if (button == 2) {
-                    Epic name2 = new Epic(name);
-                    Epic epicTask = manager.createNewEpic(name2);
+                    Epic epic = new Epic(name, description);
+                    Epic epicTask = manager.createNewEpic(epic);
                 }
             } else if (command == 2) {
-                System.out.println(manager.allTask);
-                System.out.println(manager.allEpics);
+                System.out.println(manager.getAllTask());
+                System.out.println(manager.getAllEpics());
 
             } else if (command == 0) {
                 break;

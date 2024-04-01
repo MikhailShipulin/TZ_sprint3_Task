@@ -1,34 +1,38 @@
 import java.util.HashMap;
-import java.util.List;
 
 public class Manager {
-    HashMap<Integer, Task> allTask = new HashMap<>();
-    HashMap<Integer, Task> allSubTask = new HashMap<>();
-    HashMap<Integer, Epic> allEpics = new HashMap<>();
+    private final HashMap<Integer, Task> allTask = new HashMap<>();
+    private final HashMap<Integer, Subtask> allSubTask = new HashMap<>();
+    private final HashMap<Integer, Epic> allEpics = new HashMap<>();
+    private Integer taskId = 0;
 
-    private Integer id = 0;
-    private Integer generateId(){
-        this.id++;
-        return this.id;
-    }
+
     public Task createNewTask(Task task) {
-        task.id = generateId();
-        allTask.put(task.id, task);
+        if(task != null){
+            Integer idTask = createId();
+            allTask.put(idTask, task);
+            task.setId(idTask);
+        }
         return task;
     }
-
-//    public Task createNewSubTask() {
-//        Subtask task = new Subtask();
-//        task.id = generateId();
-//        allSubTask.put(task.id, task);
-//        return task;
-//    }
-
-    public Epic createNewEpic(Epic task) {
-        task.id = generateId();
-        allEpics.put(task.id, task);
-        return task;
+    public Epic createNewEpic(Epic epic) {
+        Integer idEpic = createId();
+        allEpics.put(idEpic, epic);
+        epic.setId(idEpic);
+        return epic;
     }
+    public  void createNewSubtask(Subtask subtask){
+        if (!allEpics.containsKey(subtask.getEpicId())) {   //Проверяем в списке эпиков отсутствие подзадачи
+            return;
+        }
+        Integer idSubtask = createId();
+        allSubTask.put(idSubtask, subtask);                 //Добавляем зададачу в Хеш-таблицу
+        subtask.setId(idSubtask);                           //Устанавливаем ID
+        Epic epic = allEpics.get(subtask.getEpicId());
+        epic.addSubtaskList(subtask.getId());               //Добавляем эпику подзадачу
+    }
+
+
 
 //    public List<Task> getAllTask(){
 //        return
@@ -42,5 +46,15 @@ public class Manager {
 //
 //        return allEpics;
 //    }
+    private int createId() {
+        return taskId++;
+    }
 
+    public HashMap<Integer, Task> getAllTask() {
+        return allTask;
+    }
+
+    public HashMap<Integer, Epic> getAllEpics() {
+        return allEpics;
+    }
 }

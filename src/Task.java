@@ -1,20 +1,56 @@
-public class Task {
-    //Название, кратко описывающее суть задачи (например, «Переезд»).
-    protected Integer id;
-    static Integer totalId = 0;
-    public String nameTask;
 
-    public Task(String nameTask) {
-        this.id = totalId;
-        totalId++;
-        this.nameTask = nameTask;
+public class Task {
+    private Integer id;
+    private String name;
+    private String description;
+    private Status status;
+
+
+    public Task(String name, String description) {
+        this.name = name;
+        this.description = description;
+        this.status = Status.NEW;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
         return "Task{" +
                 "id=" + id +
-                ", nameTask='" + nameTask + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", status=" + status +
                 '}';
     }
 }
