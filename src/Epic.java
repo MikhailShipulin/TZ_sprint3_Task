@@ -16,13 +16,11 @@ class Epic extends Task {
 
     @Override
     public String toString() {
-        return "Epic{" +
-                ", epicId=" + super.getId() +
-                "name=" + super.getName() +
-                ", description=" + super.getDescription() +
-                ", status=" + super.getStatus() +
-                ", subTaskList=" + getSubTaskList() +
-                '}';
+        return "Epic: epicId = " + super.getId() +
+                ", name = " + super.getName() +
+                ", description = " + super.getDescription() +
+                ", status = " + super.getStatus() +
+                ", subTaskList = " + getSubTaskList();
     }
 
 
